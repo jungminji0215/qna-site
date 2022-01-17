@@ -1,0 +1,22 @@
+{{>layouts/header}}
+
+<form class="container">
+    <div class=mb-3">
+        <label class="form-label" for="title">제목</label>
+        <input type="text" class="form-control" id="title">
+    </div>
+
+    <div class=mb-3">
+        <label class="form-label" for="author">작성자</label>
+        <input type="text" class="form-control" id="author">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="content">내용</label>
+        <textarea class="form-control" rows="3" id="content" ></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary" id="btn-save">등록</button>
+</form>
+
+{{>layouts/footer}}
