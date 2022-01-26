@@ -10,16 +10,17 @@
     </tr>
     </thead>
     <tbody>
-    {{#article}}
+    {{#articleList}}
     <tr>
         <th>{{id}}</th>
         <td>{{author}}</td>
-        <td>{{title}}</td>
+        <td><a href="/articles/{{id}}">{{title}}</a></td>
         <td>{{content}}</td>
     </tr>
-    {{/article}}
+    {{/articleList}}
     </tbody>
 </table>
-<a href="/articles">목록</a>
+
+<a href="/articles/new">새 글 작성</a>
 
 {{>layouts/footer}}
