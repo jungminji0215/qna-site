@@ -3,6 +3,7 @@ package com.jmj.qnasite.controller;
 import com.jmj.qnasite.dto.ArticleForm;
 import com.jmj.qnasite.entity.Article;
 import com.jmj.qnasite.repository.ArticleRepository;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,28 +29,15 @@ public class ArticleController {
 
     @PostMapping("/articles/create")
     public String createArticle(ArticleForm form){
-        log.info(form.toString());
-
         Article article = form.toEntity();
-        log.info(article.toString());
-
         Article saved = articleRepository.save(article);
-        log.info(saved.toString());
-
         return "redirect:/articles/" + saved.getId();
     }
 
     @GetMapping("articles/{id}")
     public String findById(@PathVariable Long id, Model model){
-        log.info("id = " + id);
-
-        // 아이디로 데이터 가져오기
         Article articleEntity = articleRepository.findById(id).orElse(null);
-
-        // 가져온 데이터 모델에 등록
         model.addAttribute("article", articleEntity);
-
-        // 보여줄 페이지 설정
         return "articles/show";
     }
 
@@ -58,5 +46,37 @@ public class ArticleController {
         List<Article> articleEntityList = articleRepository.findAll();
         model.addAttribute("articleList", articleEntityList);
         return "articles/index";
+    }
+
+    @GetMapping("/articles/{id}/edit")
+    public String edit(@PathVariable Long id, Model model){
+        // 데이터 가져오기
+        Article articleEntity = articleRepository.findById(id).orElse(null);
+
+        model.addAttribute("article", articleEntity);
+
+        return "articles/edit";
+    }
+
+    @PostMapping("/articles/update")
+    public String update(ArticleForm form){
+        log.info(form.toString());
+
+        // DTO를 Entity로 변환
+        Article articleEntity = form.toEntity();
+        log.info(articleEntity.toString());
+
+        // 엔티티를 DB에 저장
+        // 기존 데이터 가져오기
+        Article target = articleRepository.findById(articleEntity.getId()).orElse(null);
+
+        // 기존데이터에 값 갱신
+        if(target != null){
+            articleRepository.save(articleEntity);
+        }
+
+        // 리다이렉트
+       return "redirect:/articles/" + articleEntity.getId();
+
     }
 }
