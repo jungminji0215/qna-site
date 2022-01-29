@@ -8,9 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -43,6 +45,7 @@ public class ArticleController {
 
     @GetMapping("/articles")
     public String findAll(Model model){
+        log.info("메인");
         List<Article> articleEntityList = articleRepository.findAll();
         model.addAttribute("articleList", articleEntityList);
         return "articles/index";
@@ -50,11 +53,8 @@ public class ArticleController {
 
     @GetMapping("/articles/{id}/edit")
     public String edit(@PathVariable Long id, Model model){
-        // 데이터 가져오기
         Article articleEntity = articleRepository.findById(id).orElse(null);
-
         model.addAttribute("article", articleEntity);
-
         return "articles/edit";
     }
 
@@ -64,19 +64,29 @@ public class ArticleController {
 
         // DTO를 Entity로 변환
         Article articleEntity = form.toEntity();
-        log.info(articleEntity.toString());
 
-        // 엔티티를 DB에 저장
-        // 기존 데이터 가져오기
+        log.info(articleEntity.toString());
         Article target = articleRepository.findById(articleEntity.getId()).orElse(null);
 
-        // 기존데이터에 값 갱신
         if(target != null){
             articleRepository.save(articleEntity);
         }
 
-        // 리다이렉트
        return "redirect:/articles/" + articleEntity.getId();
+    }
 
+    @GetMapping("/articles/{id}/delete")
+    public String delete(@PathVariable Long id, RedirectAttributes rt){
+        log.info("삭제");
+
+        Article target = articleRepository.findById(id).orElse(null);
+        log.info(target.toString());
+
+        if(target != null){
+            articleRepository.delete(target);
+            rt.addFlashAttribute("msg", "삭제가 왼료되었습니다!");
+        }
+
+        return "redirect:/articles";
     }
 }
