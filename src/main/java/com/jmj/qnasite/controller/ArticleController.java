@@ -1,21 +1,18 @@
 package com.jmj.qnasite.controller;
 
-import com.jmj.qnasite.dto.ArticleForm;
+import com.jmj.qnasite.dto.ArticleDto;
 import com.jmj.qnasite.entity.Article;
 import com.jmj.qnasite.repository.ArticleRepository;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @Slf4j
@@ -30,7 +27,7 @@ public class ArticleController {
     }
 
     @PostMapping("/articles/create")
-    public String createArticle(ArticleForm form){
+    public String createArticle(ArticleDto form){
         Article article = form.toEntity();
         Article saved = articleRepository.save(article);
         return "redirect:/articles/" + saved.getId();
@@ -59,7 +56,7 @@ public class ArticleController {
     }
 
     @PostMapping("/articles/update")
-    public String update(ArticleForm form){
+    public String update(ArticleDto form){
         log.info(form.toString());
 
         // DTO를 Entity로 변환
