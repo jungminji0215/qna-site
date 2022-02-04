@@ -46,6 +46,8 @@
 ## 트러블슈팅
 프로젝트를 진행하면서 고민했던 부분
 - 엔티티 연관 관계 매핑
+- [#21 응답 데이터에 대한 고민](https://github.com/jungminji0215/qna-site/issues/21#issuecomment-1030227824)
+  - REST API 개발 시, 서버에서 응답하는 데이터 정보에 대한 고민을 함
 
 <br>
 
