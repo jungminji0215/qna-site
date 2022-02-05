@@ -9,10 +9,9 @@ import lombok.ToString;
 public class ArticleDto {
     private Long id;
     private String title;
-    private String author;
     private  String content;
 
     public Article toEntity(){
-        return new Article(id, title, author, content);
+        return new Article(id, title, content);
     }
 }

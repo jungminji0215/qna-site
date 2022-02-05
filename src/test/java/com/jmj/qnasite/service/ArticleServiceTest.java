@@ -21,9 +21,9 @@ class ArticleServiceTest {
     @Test
     void 전체조회() {
         // given
-        Article memberA = new Article(1L, "제목1", "정민지", "내용1");
-        Article memberB = new Article(2L, "제목2", "정민지", "내용2");
-        Article memberC = new Article(3L, "제목3", "정민지", "내용3");
+        Article memberA = new Article(1L, "제목1", "내용1");
+        Article memberB = new Article(2L, "제목2", "내용2");
+        Article memberC = new Article(3L, "제목3", "내용3");
         List<Article> expected = new ArrayList<Article>(Arrays.asList(memberA, memberB, memberC));
 
         // when
@@ -37,7 +37,7 @@ class ArticleServiceTest {
     @DisplayName("존재하는 id 테스트")
     void 존재하는_아이디() {
         // given
-        Article memberA = new Article(1L, "제목1", "정민지", "내용1");
+        Article memberA = new Article(1L, "제목1",  "내용1");
 
         // when
         Article show = articleService.show(memberA.getId());

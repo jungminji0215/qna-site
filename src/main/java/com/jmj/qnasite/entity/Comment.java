@@ -1,5 +1,6 @@
 package com.jmj.qnasite.entity;
 
+import com.jmj.qnasite.dto.CommentDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,9 +18,13 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // 댓글의 부모 게시글
     @ManyToOne
     @JoinColumn(name = "article_id")
     private Article article;
 
     private String content;
+
+//    public static Comment createComment(CommentDto dto, Article article) {
+//    }
 }
