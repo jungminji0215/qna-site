@@ -22,9 +22,6 @@ public class Article {
     private String title;
 
     @Column
-    private String author;
-
-    @Column
     private String content;
 
     public void patch(Article article) {
@@ -32,10 +29,7 @@ public class Article {
             this.title = article.title;
         }
         if(article.content != null){
-            this.content = article.title;
-        }
-        if(article.author != null){
-            this.author = article.author;
+            this.content = article.content;
         }
     }
 }
