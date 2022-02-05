@@ -30,8 +30,9 @@
 </p>
 
 - 개발 기능
-  - CRUD 개발
-  - REST API 개발 
+  - [x] 질문 CRUD 개발 
+  - [x] 질문 REST API 개발 
+  - [ ] 댓글 REST API 개발 중 - 등록, 조회 완료 (develop 브랜치에서 확인 가능)
 
 <br>
 
