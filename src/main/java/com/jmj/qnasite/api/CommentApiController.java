@@ -1,6 +1,7 @@
 package com.jmj.qnasite.api;
 
 import com.jmj.qnasite.dto.CommentDto;
+import com.jmj.qnasite.entity.Comment;
 import com.jmj.qnasite.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,16 @@ public class CommentApiController {
     }
 
     // 댓글 수정
+    @PatchMapping("/api/comments/{id}")
+    public ResponseEntity<CommentDto> update(@PathVariable Long id, @RequestBody CommentDto dto){
+        CommentDto updatedDto = commentService.update(id, dto);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedDto);
+    }
 
     // 댓글 삭제
+    @DeleteMapping("/api/comments/{id}")
+    public ResponseEntity delete(@PathVariable Long id){
+        CommentDto deleteDto = commentService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body(deleteDto);
+    }
 }

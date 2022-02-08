@@ -52,7 +52,7 @@ public class CommentServiceImpl implements CommentService {
     public CommentDto create(Long articleId, CommentDto dto) {
         // 게시글 조회 및 예외 발생
         Article article = articleRepository.findById(articleId)
-                .orElseThrow(() -> new IllegalArgumentException("실패, 해당 게시글이 존재하지 않습니다.")); // 예외 발생 시, 아래 실행 안 됨
+                .orElseThrow(() -> new IllegalArgumentException("댓글 등록 실패, 해당 게시글이 존재하지 않습니다.")); // 예외 발생 시, 아래 실행 안 됨
 
         // 댓글 엔티티 생성
         Comment comment = Comment.createComment(dto, article);
@@ -62,5 +62,32 @@ public class CommentServiceImpl implements CommentService {
 
         // DTO로 변경하여 반환
         return CommentDto.createCommentDto(created);
+    }
+
+    @Transactional
+    @Override
+    public CommentDto update(Long id, CommentDto dto) {
+        // 댓글 조회
+        Comment target = commentRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("댓글 수정 실패, 해당 댓글이 없습니다."));
+
+        // 조회한 댓글 수정
+        target.patch(dto);
+
+        // 수정한 댓글 DB에 저장
+        Comment updatedComment = commentRepository.save(target);
+
+        // Entity를 DTO 로 변환하여 반환
+        return CommentDto.createCommentDto(updatedComment);
+    }
+
+    @Transactional
+    @Override
+    public CommentDto delete(Long id) {
+        Comment target = commentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("댓글 삭제 실패, 해당 댓글이 없습니다."));
+
+        commentRepository.delete(target);
+        return CommentDto.createCommentDto(target);
     }
 }

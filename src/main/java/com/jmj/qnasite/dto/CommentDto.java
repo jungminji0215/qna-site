@@ -1,5 +1,6 @@
 package com.jmj.qnasite.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jmj.qnasite.entity.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +15,7 @@ public class CommentDto {
 
     private Long id;
 
+    @JsonProperty("article_id")
     private Long articleId;
 
     private String content;
