@@ -1,8 +1,10 @@
 package com.jmj.qnasite.controller;
 
 import com.jmj.qnasite.dto.ArticleDto;
+import com.jmj.qnasite.dto.CommentDto;
 import com.jmj.qnasite.entity.Article;
 import com.jmj.qnasite.repository.ArticleRepository;
+import com.jmj.qnasite.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ import java.util.List;
 public class ArticleController {
 
     @Autowired
+    private CommentService commentService;
+
+    @Autowired
     private ArticleRepository articleRepository;
 
     @GetMapping("/articles/new")
@@ -33,10 +38,15 @@ public class ArticleController {
         return "redirect:/articles/" + saved.getId();
     }
 
-    @GetMapping("articles/{id}")
+    // 게시글 상세
+    @GetMapping("/articles/{id}")
     public String findById(@PathVariable Long id, Model model){
         Article articleEntity = articleRepository.findById(id).orElse(null);
         model.addAttribute("article", articleEntity);
+
+        List<CommentDto> commentDtos = commentService.comments(id);
+        model.addAttribute("commentDtos", commentDtos);
+
         return "articles/show";
     }
 
