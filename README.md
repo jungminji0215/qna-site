@@ -26,7 +26,7 @@
 
 - 실제 작동 영상
 <p align="center">
-<img src="https://user-images.githubusercontent.com/83000829/151507571-dd10b5e3-2153-471a-b6ca-97794e232686.gif" width = 700 />
+<img src="https://user-images.githubusercontent.com/83000829/154852707-8c1366f0-b8d6-449e-b08b-013acc6e009f.gif" width = 700 />
 </p>
 
 - 개발 기능
