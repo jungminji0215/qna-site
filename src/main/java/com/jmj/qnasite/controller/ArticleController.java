@@ -20,9 +20,11 @@ import java.util.List;
 @Slf4j
 public class ArticleController {
 
+    // refactoring - 생성자 주입 방법 변경
     @Autowired
     private CommentService commentService;
 
+    // refactoring - 생성자 주입 방법 변경
     @Autowired
     private ArticleRepository articleRepository;
 
@@ -82,6 +84,7 @@ public class ArticleController {
        return "redirect:/articles/" + articleEntity.getId();
     }
 
+    // 게시글 삭제
     @GetMapping("/articles/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes rt){
         log.info("삭제");

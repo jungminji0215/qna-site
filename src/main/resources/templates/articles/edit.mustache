@@ -1,24 +1,29 @@
 {{>layouts/header}}
 
-{{#article}}
-<form class="container" action="/articles/update" method="post">
-    <input name="id" type="hidden" value="{{id}}">
-    <div class=mb-3">
-        <label class="form-label" for="title">제목</label>
-        <input type="text" class="form-control" id="title" name="title" value="{{title}}">
-        <!--name에는 dto에 있는 필드명과 똑같이 -->
-    </div>
+<div class="container">
+    {{#article}}
+    <form class="container" action="/articles/update" method="post">
+        <input name="id" type="hidden" value="{{id}}">
+        <div class=mb-3">
+            <label class="form-label" for="title">제목</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{title}}">
+            <!--name에는 dto에 있는 필드명과 똑같이 -->
+        </div>
 
+        <div class="mb-3">
+            <label class="form-label" for="content">내용</label>
+            <textarea class="form-control" rows="3" id="content" name="content">{{content}}</textarea>
+        </div>
 
+        <a href="/articles/{{id}}" class="btn btn-primary">뒤로가기</a>
 
-    <div class="mb-3">
-        <label class="form-label" for="content">내용</label>
-        <textarea class="form-control" rows="3" id="content" name="content">{{content}}</textarea>
-    </div>
+        <div style="float: right;">
+        <button type="submit" class="btn btn-primary" id="btn-save">등록</button>
+        </div>
 
-    <button type="submit" class="btn btn-primary" id="btn-save">등록</button>
-    <a href="/articles/{{id}}">뒤로가기</a>
-</form>
-{{/article}}
+        <br/><br/>
+    </form>
+    {{/article}}
+<div>
 
 {{>layouts/footer}}

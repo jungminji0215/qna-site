@@ -1,26 +1,30 @@
 {{>layouts/header}}
 
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">ID</th>
-<!--        <th scope="col">Author</th>-->
-        <th scope="col">Title</th>
-        <th scope="col">Content</th>
-    </tr>
-    </thead>
-    <tbody>
-    {{#articleList}}
-    <tr>
-        <th>{{id}}</th>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">번호</th>
+    <!--        <th scope="col">Author</th>-->
+            <th scope="col">예상 질문</th>
+<!--            <th scope="col">상세</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        {{#articleList}}
+        <tr>
+            <th>{{id}}</th>
+            <td><a href="/articles/{{id}}">{{title}}</a></td>
+<!--            <td>{{content}}</td>-->
+        </tr>
+        {{/articleList}}
+        </tbody>
+    </table>
 
-        <td><a href="/articles/{{id}}">{{title}}</a></td>
-        <td>{{content}}</td>
-    </tr>
-    {{/articleList}}
-    </tbody>
-</table>
-
-<a href="/articles/new">새 글 작성</a>
+    <div style="float: right;">
+    <a class="btn btn-primary" href="/articles/new">새 글 작성</a>
+    </div>
+    <br/><br/>
+</div>
 
 {{>layouts/footer}}
