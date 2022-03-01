@@ -1,7 +1,7 @@
 package com.jmj.qnasite.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.jmj.qnasite.entity.Comment;
+import com.jmj.qnasite.domain.comment.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

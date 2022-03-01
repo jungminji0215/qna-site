@@ -1,24 +1,22 @@
 {{>layouts/header}}
 
-<form class="container" action="/articles/create" method="post">
-    <div class=mb-3">
-        <label class="form-label" for="title">제목</label>
-        <input type="text" class="form-control" id="title" name="title">
-        <!--name에는 dto에 있는 필드명과 똑같이 -->
-    </div>
+<div class="container">
+    <form class="container" action="/articles/create" method="post">
+        <div class=mb-3">
+            <label class="form-label" for="title">제목</label>
+            <input type="text" class="form-control" id="title" name="title">
+            <!--name에는 dto에 있는 필드명과 똑같이 -->
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="content">내용</label>
+            <textarea class="form-control" rows="3" id="content"  name="content"></textarea>
+        </div>
 
-<!--    <div class=mb-3">-->
-<!--        <label class="form-label" for="author">작성자</label>-->
-<!--        <input type="text" class="form-control" id="author" name="author">-->
-<!--    </div>-->
+        <a href="/articles" class="btn btn-primary">뒤로가기</a>
 
-    <div class="mb-3">
-        <label class="form-label" for="content">내용</label>
-        <textarea class="form-control" rows="3" id="content"  name="content"></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary" id="btn-save">등록</button>
-    <a href="/articles">뒤로가기</a>
-</form>
-
+        <div style="float: right;">
+            <button type="submit" class="btn btn-primary" id="btn-save">등록</button>
+        </div>
+    </form>
+<div>
 {{>layouts/footer}}

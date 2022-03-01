@@ -1,6 +1,6 @@
-package com.jmj.qnasite.repository;
+package com.jmj.qnasite.domain.comment;
 
-import com.jmj.qnasite.entity.Comment;
+import com.jmj.qnasite.domain.comment.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

@@ -1,24 +1,19 @@
 package com.jmj.qnasite.api;
 
 import com.jmj.qnasite.dto.CommentDto;
-import com.jmj.qnasite.entity.Comment;
 import com.jmj.qnasite.service.CommentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 public class CommentApiController {
 
     private final CommentService commentService;
-
-    @Autowired
-    public CommentApiController(CommentService commentService) {
-        this.commentService = commentService;
-    }
 
     // 댓글 등록
     @PostMapping("/api/articles/{articleId}/comments")

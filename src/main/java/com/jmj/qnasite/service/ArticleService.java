@@ -1,63 +1,25 @@
 package com.jmj.qnasite.service;
 
 import com.jmj.qnasite.dto.ArticleDto;
-import com.jmj.qnasite.entity.Article;
-import com.jmj.qnasite.repository.ArticleRepository;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+import com.jmj.qnasite.domain.article.Article;
 
 import java.util.List;
 
-@Slf4j
-@Service
-public class ArticleService {
+public interface ArticleService {
 
-    @Autowired
-    private ArticleRepository articleRepository;
+    // 메인
+    List<Article> index();
 
-    public List<Article> index() {
-        return articleRepository.findAll();
-    }
+    // 글 상세보기
+    Article show(Long id);
 
-    public Article show(Long id) {
-        return articleRepository.findById(id).orElse(null);
-    }
+    // 새 글 작성
+    Article create(ArticleDto dto);
 
-    public Article create(ArticleDto dto) {
-        Article article = dto.toEntity();
+    // 수정
+    Article update(Long id, ArticleDto dto);
 
-        if(article.getId() != null){
-            return null;
-        }
-        return articleRepository.save(article);
-    }
+    // 삭제
+    Article detete(Long id);
 
-    public Article update(Long id, ArticleDto dto) {
-        Article article = dto.toEntity();
-        Article target = articleRepository.findById(id).orElse(null);
-
-        if(target == null || id != article.getId()){
-            log.info("잘못된 요청");
-            return null;
-        }
-
-        target.patch(article);
-        Article updated = articleRepository.save(target);
-
-        return updated;
-    }
-
-    public Article detete(Long id) {
-        Article target = articleRepository.findById(id).orElse(null);
-
-        if(target == null){
-            return null;
-        }
-
-        articleRepository.delete(target);
-        return target;
-    }
 }
