@@ -1,29 +1,23 @@
 package com.jmj.qnasite.service;
 
-import com.jmj.qnasite.dto.ArticleDto;
 import com.jmj.qnasite.dto.CommentDto;
-import com.jmj.qnasite.entity.Article;
-import com.jmj.qnasite.entity.Comment;
-import com.jmj.qnasite.repository.ArticleRepository;
-import com.jmj.qnasite.repository.CommentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.jmj.qnasite.domain.article.Article;
+import com.jmj.qnasite.domain.comment.Comment;
+import com.jmj.qnasite.domain.article.ArticleRepository;
+import com.jmj.qnasite.domain.comment.CommentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Service
 public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
     private final ArticleRepository articleRepository;
-
-    @Autowired
-    public CommentServiceImpl(CommentRepository commentRepository, ArticleRepository articleRepository) {
-        this.commentRepository = commentRepository;
-        this.articleRepository = articleRepository;
-    }
 
     // 댓글 등록
     @Transactional // DB에 변경이 일어나기 때문에 트랜잭션 처리

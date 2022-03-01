@@ -1,4 +1,4 @@
-package com.jmj.qnasite.entity;
+package com.jmj.qnasite.domain.article;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

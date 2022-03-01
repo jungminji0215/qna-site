@@ -1,6 +1,6 @@
 package com.jmj.qnasite.service;
 
-import com.jmj.qnasite.entity.Article;
+import com.jmj.qnasite.domain.article.Article;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class ArticleServiceTest {
+class ArticleServiceImplTest {
 
     @Autowired
-    ArticleService articleService;
+    ArticleServiceImpl articleServiceImpl;
 
     @Test
     void 전체조회() {
@@ -27,7 +27,7 @@ class ArticleServiceTest {
         List<Article> expected = new ArrayList<Article>(Arrays.asList(memberA, memberB, memberC));
 
         // when
-        List<Article> articles = articleService.index();
+        List<Article> articles = articleServiceImpl.index();
 
         // then
         assertEquals(expected.toString(), articles.toString());
@@ -40,7 +40,7 @@ class ArticleServiceTest {
         Article memberA = new Article(1L, "제목1",  "내용1");
 
         // when
-        Article show = articleService.show(memberA.getId());
+        Article show = articleServiceImpl.show(memberA.getId());
 
         // then
         assertEquals(memberA.getId(), show.getId());

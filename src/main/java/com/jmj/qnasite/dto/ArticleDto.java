@@ -1,6 +1,6 @@
 package com.jmj.qnasite.dto;
 
-import com.jmj.qnasite.entity.Article;
+import com.jmj.qnasite.domain.article.Article;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 

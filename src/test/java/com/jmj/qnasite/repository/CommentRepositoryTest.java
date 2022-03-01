@@ -1,14 +1,10 @@
 package com.jmj.qnasite.repository;
 
-import com.jmj.qnasite.entity.Comment;
+import com.jmj.qnasite.domain.comment.CommentRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest // JPA와 연동한 테스트
 class CommentRepositoryTest {

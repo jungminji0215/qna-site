@@ -1,5 +1,6 @@
-package com.jmj.qnasite.entity;
+package com.jmj.qnasite.domain.comment;
 
+import com.jmj.qnasite.domain.article.Article;
 import com.jmj.qnasite.dto.CommentDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
