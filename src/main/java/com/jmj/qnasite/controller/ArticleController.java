@@ -25,11 +25,31 @@ public class ArticleController {
 
     private final ArticleRepository articleRepository;
 
+    // 메인
+    @GetMapping("/")
+    public String index(Model model){
+        log.info("메인");
+        List<Article> articleEntityList = articleRepository.findAll();
+        model.addAttribute("articleList", articleEntityList);
+        return "/articles/index";
+    }
+
+    // 메인
+    @GetMapping("/articles")
+    public String index2(Model model){
+        log.info("메인");
+        List<Article> articleEntityList = articleRepository.findAll();
+        model.addAttribute("articleList", articleEntityList);
+        return "articles/index";
+    }
+
+    // 새 글 등록 페이지
     @GetMapping("/articles/new")
     public String newArticleForm(){
         return "articles/new";
     }
 
+    // 글 생성
     @PostMapping("/articles/create")
     public String createArticle(ArticleDto form){
         Article article = form.toEntity();
@@ -49,13 +69,7 @@ public class ArticleController {
         return "articles/show";
     }
 
-    @GetMapping("/articles")
-    public String findAll(Model model){
-        log.info("메인");
-        List<Article> articleEntityList = articleRepository.findAll();
-        model.addAttribute("articleList", articleEntityList);
-        return "articles/index";
-    }
+
 
     @GetMapping("/articles/{id}/edit")
     public String edit(@PathVariable Long id, Model model){

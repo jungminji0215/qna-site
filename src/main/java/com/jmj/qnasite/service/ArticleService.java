@@ -7,14 +7,19 @@ import java.util.List;
 
 public interface ArticleService {
 
-    public List<Article> index();
+    // 메인
+    List<Article> index();
 
-    public Article show(Long id);
+    // 글 상세보기
+    Article show(Long id);
 
-    public Article create(ArticleDto dto);
+    // 새 글 작성
+    Article create(ArticleDto dto);
 
-    public Article update(Long id, ArticleDto dto);
+    // 수정
+    Article update(Long id, ArticleDto dto);
 
-    public Article detete(Long id);
+    // 삭제
+    Article detete(Long id);
 
 }
