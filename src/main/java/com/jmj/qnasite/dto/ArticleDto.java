@@ -1,17 +1,17 @@
 package com.jmj.qnasite.dto;
 
-import com.jmj.qnasite.entity.Article;
+import com.jmj.qnasite.domain.article.Article;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 
 @AllArgsConstructor
 @ToString
-public class ArticleForm {
+public class ArticleDto {
+    private Long id;
     private String title;
-    private String author;
     private  String content;
 
     public Article toEntity(){
-        return new Article(null, title, author, content);
+        return new Article(id, title, content);
     }
 }

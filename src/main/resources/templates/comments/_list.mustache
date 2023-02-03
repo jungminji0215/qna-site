@@ -1,0 +1,49 @@
+<div id="comments-list">
+    {{#commentDtos}}
+        <div class="card m-2" id="comments-{{id}}">
+            <div class="card-body">
+                {{content}}
+                <!-- 삭제 버튼 -->
+                <button type="button"
+                        class="btn btn-sm btn-outline-danger comment-delete-btn"
+                        data-comment-id="{{id}}">삭제</button>
+            </div>
+        </div>
+    {{/commentDtos}}
+</div>
+
+<!-- 댓글 삭제 -->
+<Script>
+{
+  // 삭제 버튼 선택
+  const commentDeleteBtns = document.querySelectorAll(".comment-delete-btn");
+
+  // 삭제 버튼 클릭 이벤트 처리
+  commentDeleteBtns.forEach(btn => {
+    btn.addEventListener("click", (event) => {
+      // 이벤트 발생지 요소 선택
+      const commentDeleteBtn = event.srcElement;
+
+      // 삭제 댓글 id 가져오기
+      const commentId = commentDeleteBtn.getAttribute("data-comment-id");
+
+      // 삭제 API 호출 및 처리
+      const url = `/api/comments/${commentId}`; // "/api/comments/" + commentId
+
+      fetch(url, {
+        method: "DELETE"
+      }).then(response => {
+        // 실패
+        if (!response.ok) {
+          alert("댓글 삭제 실패ㅜㅜ");
+          return;
+        }
+        // 성공
+        // window.location.reload()와의 차이
+        const target = document.querySelector(`#comments-${commentId}`);
+        target.remove();
+      });
+    });
+  });
+}
+</script>

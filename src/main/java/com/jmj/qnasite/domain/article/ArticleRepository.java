@@ -1,6 +1,6 @@
-package com.jmj.qnasite.repository;
+package com.jmj.qnasite.domain.article;
 
-import com.jmj.qnasite.entity.Article;
+import com.jmj.qnasite.domain.article.Article;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.ArrayList;

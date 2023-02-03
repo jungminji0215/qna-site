@@ -1,0 +1,52 @@
+<div class="card m-2" id=comments-new">
+    <div class="card-body">
+        <form>
+            <div class="mb-2">
+                <textarea class="form-control form-control-sm" rows="3" id="new-comment-content"></textarea>
+            </div>
+
+            <!--  댓글은 게시글의 id를 가지고 있어야 한다. -->
+            {{#article}}
+                <input type="hidden" id="new-comment-article-id" value="{{id}}">
+            {{/article}}
+
+            <button type="button" class="btn btn-outline-primary btn-sm" id="comment-create-btn">댓글 등록</button>
+        </form>
+    </div>
+</div>
+
+<Script>
+{
+
+  // 댓글 등록 버튼을 변수화
+  const commentCreateBtn = document.querySelector("#comment-create-btn");
+
+  // 버튼 클릭 이벤트 감지 addEventListener가 commentCreateBtn를 항상 주시하고 있음
+  // 클릭 감지되면 함수 호출
+  commentCreateBtn.addEventListener("click", function() {
+
+    // 댓글 객체 생성
+    const comment = {
+      content: document.querySelector("#new-comment-content").value,
+      article_id: document.querySelector("#new-comment-article-id").value // 보통 API로 데이터 전달할 때 스테이크 케이스로 전달함
+    };
+
+    // 해당 url로 fetch API
+    const url = "/api/articles/" + comment.article_id + "/comments";
+
+    // fetch API (url, {어떻게 보낼지})
+    fetch(url, {
+      method: "post",
+      body: JSON.stringify(comment), // comment JS 객체를 JSON으로 변경해서 보낸다.
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(response => { // 위의 과정이 끝나면 수행
+       // HTTP 응답 코드에 따른 메시지 출력
+       const msg = (response.ok) ? "댓글이 등록되었습니다." : "댓글 등록 실패하였습니다.ㅠㅠ";
+       alert(msg);
+       window.location.reload();
+    });
+  });
+}
+</script>
